@@ -103,7 +103,7 @@ Workflows are only allowed to be linear (`A → B → C`) or fan-out (`A → [B,
 | Type | Methodology skill (single SKILL.md, prompt-based) |
 | Version | 2.2.0 |
 | Dependencies | None — no scripts, no packages, no API keys |
-| Compatibility | Compatible with Claude Code, Claude Desktop, OpenClaw, and any agent supporting the Skill / SKILL.md convention |
+| Compatibility | Any agent supporting the Skill / SKILL.md convention — tested on mainstream coding assistants, desktop agents, and OpenClaw |
 | Capability contracts | 4 abstract contracts: `spawn` · `monitor` · `history` · `notify` (mapped by capability signature, not by tool name) |
 | Fallback path | Runtime without sub-agent capability: lead agent serially plays each role; pipeline mode and review separation preserved |
 | Skill language | Chinese (usable with prompts in your own language) |

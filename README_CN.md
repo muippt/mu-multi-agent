@@ -103,7 +103,7 @@
 | 类型 | 方法论 Skill（单一 SKILL.md，纯提示词，无脚本） |
 | 版本 | 2.2.0 |
 | 依赖 | 零依赖——无脚本、无安装包、无需 API Key |
-| 兼容性 | Compatible with Claude Code, Claude Desktop, OpenClaw, and any agent supporting the Skill / SKILL.md convention |
+| 兼容性 | 任何支持 Skill / SKILL.md 约定的 Agent——已在主流编程助手、桌面 Agent 与 OpenClaw 上验证 |
 | 能力契约 | 4 个抽象契约：`spawn` · `monitor` · `history` · `notify`（按能力签名对号入座，不绑工具名） |
 | 降级路径 | 运行时无子 Agent 能力时，主 Agent 串行扮演各角色；流水线模式与评审分离完整保留 |
 | Skill 语言 | 中文（提示词可用你自己的语言） |
