@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Python
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+
+# Logs & temp
+*.log
+*.bak
+*.bak.*
