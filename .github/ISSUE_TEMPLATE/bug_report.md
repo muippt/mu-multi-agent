@@ -9,7 +9,7 @@ labels: bug
 
 **What did you expect?**
 
-**Which agent runtime are you using?** (e.g. Claude Code, OpenClaw, other)
+**Which agent runtime are you using?** (e.g. a coding assistant, OpenClaw, other)
 
 **Which mode was active?** (commander / pipeline / hybrid / unclear)
 
