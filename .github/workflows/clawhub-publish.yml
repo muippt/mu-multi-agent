@@ -1,0 +1,53 @@
+name: Publish to ClawHub
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "SKILL.md"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Preview without publishing"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "22"
+
+      - name: Install ClawHub CLI
+        run: npm install -g --ignore-scripts clawhub@0.23.3
+
+      - name: Publish to ClawHub
+        shell: bash
+        env:
+          CLAWHUB_TOKEN: ${{ secrets.CLAWHUB_TOKEN }}
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+        run: |
+          set -euo pipefail
+          umask 077
+          config_dir="$HOME/.config/clawhub"
+          config_file="$config_dir/config.json"
+          mkdir -p "$config_dir"
+          trap 'rm -f "$config_file"' EXIT
+          node -e 'const fs = require("fs"); fs.writeFileSync(process.argv[1], JSON.stringify({registry: "https://clawhub.ai", token: process.env.CLAWHUB_TOKEN}), {mode: 0o600});' "$config_file"
+          unset CLAWHUB_TOKEN
+          clawhub_args=(--owner "muippt" --name "多Agent协作指挥官" --categories "development,productivity" --topics "multi-agent,agent-orchestration,ai-agent,parallel-agents")
+          if [[ "$DRY_RUN" == "true" ]]; then
+            clawhub_args+=(--dry-run)
+          fi
+          clawhub skill publish . "${clawhub_args[@]}"

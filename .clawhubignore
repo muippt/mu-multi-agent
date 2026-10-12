@@ -1,0 +1,10 @@
+# ClawHub 发布排除：仅 SKILL.md 为运行必需，其余为 GitHub 展示/配套文件
+assets/
+index.html
+README.md
+README_CN.md
+LICENSE
+CONTRIBUTING.md
+.github/
+.gitignore
+.skillignore
